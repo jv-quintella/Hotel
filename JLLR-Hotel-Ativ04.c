@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <iostream>
 
-
+char hotel[20][14];
 
 void fCheckOut[i][j] //Função parte 5 checkout.
 {
@@ -104,4 +104,61 @@ void fComResCheckIn(char apt[i][j])
             continue;
         }
 		fComResCheckIn[i][j] = 'O';
+}
+
+
+
+void Reserva() //codigo p/ reservar quarto
+{
+    int andar, apartamento;
+    printf("Escolha o andar e qual apartamento serao reservados");
+    scanf("%d %d", &andar, &apartamento);
+    if (andar == 0 || apartamento == 0)
+        return;
+    if (andar >= 0 && andar =< 19 && apartamento >= 0 && apartamento =< 14)
+        {
+            if(hotel[andar][apartamento] == '.')
+            {
+                printf("Reserva realizada com sucesso");
+                hotel[andar][apartamento] = 'R';
+            }
+            else if(hotel[andar][apartamento] == 'R')
+                {
+                    printf("Quarto ja reservado");
+                }
+            else if(hotel[andar][apartamento] == 'O')
+                {
+                    printf("Quarto ocupado");
+                }
+        }
+    else
+        {
+            printf("Quarto nao encontrado");
+        }
+}
+
+void ResCheckIn() //codigo para check in com reserva
+{
+    int andar, apartamento;
+    printf("Qual andar e apartamento foram reservados? "); 
+    scanf("%d %d", &andar, &apartamento);
+    if (andar == 0 || apartamento == 0)
+        return;
+
+    if (andar >= 0 && andar =< 19 && apartamento >= 0 && apartamento =< 14)
+    {
+        if (hotel[andar][apartamento] == 'R') 
+        {
+            printf("Check-in realizado com sucesso.\n");
+            hotel[andar][apartamento] = 'O';
+        } 
+        else
+        {
+            printf("Reserva nao encontrada.\n");
+        }
+    }
+    else 
+        {
+            printf("Quarto nao encontrado");
+        }
 }
