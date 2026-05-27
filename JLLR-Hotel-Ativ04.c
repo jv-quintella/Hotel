@@ -81,3 +81,27 @@ void fCancelarRes (int q[i][j])     //Req04 cancelar reserva
     
 
 }
+
+
+void fComResCheckIn(char apt[i][j])
+{
+
+    printf("\nDigite o apartamento para o checkout (0 0 para sair): ");
+		scanf("%d %d", &i, &j);
+		if (i == 0 || j == 0)
+			break;
+
+		if(i < 1 || i > 20 || j < 1 || j > 14)
+		{
+			printf("Apt. invalida\n");
+			system("pause");
+			continue;
+		}
+        if(fComResCheckIn[i][j] != 'R')
+        {
+            printf("Este apartamento não esta reservado ou ja esta ocupado\n");
+            system("pause");
+            continue;
+        }
+		fComResCheckIn[i][j] = 'O';
+}
