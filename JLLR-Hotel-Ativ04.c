@@ -28,7 +28,7 @@ void fCheckOut[i][j] //Função parte 5 checkout.
 
 void fSemResCheckIn(int q[i][j])  //Função parte 4 checkin sem reserva.
 {
-    printf("\nDigite o apartamento para o checkout (0 0 para sair): ");
+    printf("\nDigite o apartamento para o check-in (0 0 para sair): ");
 		scanf("%d %d", &i, &j);
 		if (i == 0 || j == 0)
 			break;
@@ -39,13 +39,13 @@ void fSemResCheckIn(int q[i][j])  //Função parte 4 checkin sem reserva.
 			system("pause");
 			continue;
 		}
-        if(SemResCheckIn[i][j] != '.')
+        if(fSemResCheckIn[i][j] != '.')
         {
             printf("Este apartamento já está ocupado\n");
             system("pause");
             continue;
         }
-		SemResCheckIn[i][j] = 'O';
+		fSemResCheckIn[i][j] = 'O';
 }
 
 
