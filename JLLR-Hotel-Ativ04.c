@@ -3,7 +3,7 @@
 
 
 
-void AGA[i][j] //Função parte 5 checkout.
+void fCheckOut[i][j] //Função parte 5 checkout.
 {
     printf("\nDigite o apartamento para o checkout (0 0 para sair): ");
 		scanf("%d %d", &i, &j);
@@ -16,13 +16,13 @@ void AGA[i][j] //Função parte 5 checkout.
 			system("pause");
 			continue;
 		}
-        if(AGA[i][j] != 'O')
+        if(fCheckOut[i][j] != 'O')
         {
             printf("Apt. não ocupado, impossivel realizar o checkout\n");
             system("pause");
             continue;
         }
-		AGA[i][j] = '.';
+		fCheckOut[i][j] = '.';
 }
 
 
