@@ -2,9 +2,8 @@
  
 #include <stdio.h>
 #include <iostream>
-int main()
+fMapa()
 {
-	char AGA[21][15];
 	int i, j;
 	for(i = 20; i >= 1; i--)
 	{

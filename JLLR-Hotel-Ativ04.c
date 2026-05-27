@@ -3,7 +3,7 @@
 
 char hotel[20][14];
 
-void fCheckOut[i][j] //Função parte 5 checkout.
+void fCheckOut() //Função parte 5 checkout.
 {
     printf("\nDigite o apartamento para o checkout (0 0 para sair): ");
 		scanf("%d %d", &i, &j);
