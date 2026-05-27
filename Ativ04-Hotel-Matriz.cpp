@@ -35,7 +35,7 @@ int main()
 		scanf("%d %d", &i, &j);
 		if (i == -1 || j == -1)
 			break;
-		if(i < 0 || i >20 || j < 0 || j > 14)
+		if(i <= 0 || i >20 || j <= 0 || j > 14)
 		{
 			printf("Andar ou Apartamento invalido, por favor tente novamente.\n");
 			system("pause");
