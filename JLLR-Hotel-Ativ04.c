@@ -1,10 +1,8 @@
 #include <stdio.h>
-#include <stdlib.h> // Necessário para o system("cls") e system("pause")
+#include <stdlib.h>
 
-// Matriz global: 21 andares (1 a 20) e 15 apartamentos (1 a 14)
-char hotel[21][15];
+char hotel[20][14];
 
-// Protótipos das funções
 void fInicializarHotel();
 void fMapa();
 void fReserva();
@@ -17,16 +15,14 @@ int main()
 {
     int op, op2;
     
-    // Inicializa o hotel com '.' apenas uma vez no começo do programa
     fInicializarHotel();
 
     do
     {
-        system("cls"); // Limpa a tela a cada iteração do menu principal
-        printf("=== MAPA ATUAL DO HOTEL ===\n");
+        system("cls");
+        printf("Ocupacao dos apartamentos: \n");
         fMapa();
 
-        // Menu Principal
         printf("\nSelecione uma das opcoes:\n");
         printf("(1) - Criar Reserva\n");
         printf("(2) - Fazer Check-in\n");
@@ -46,8 +42,8 @@ int main()
                 fReserva();
                 break;
             case 2:
-                printf("\nO hospede tem uma reserva existente?\n");
-                printf("(1) Sim\t(2) Nao\n");
+                printf("\nO cliente possui uma reserva?\n");
+                printf("(1) Sim\n(2) Nao\n");
                 printf("Opcao: ");
                 scanf("%d", &op2);
                 if (op2 == 1) {
@@ -73,46 +69,43 @@ int main()
     return 0;
 }
 
-// Preenche todo o hotel com '.' (vazio)
 void fInicializarHotel()
 {
-    int i, j;
-    for(i = 1; i <= 20; i++)
+    int andar, apt;
+    for(andar = 1; andar <= 20; andar++)
     {
-        for(j = 1; j <= 14; j++)
+        for(apt = 1; apt <= 14; apt++)
         {
-            hotel[i][j] = '.';
+            hotel[andar - 1][apt - 1] = '.';
         }   
     }
 }
 
-// Apenas exibe a situação atual dos quartos
 void fMapa()
 {
-    int i, j;
+    int andar, apt;
     printf("Apartamentos->  ");
-    for(j = 1; j < 15; j++)
+    for(apt = 1; apt < 15; apt++)
     {
-        printf("%3d", j);
+        printf("%3d", apt);
     }
     printf("\n\n");
     
-    for (i = 20; i >= 1; i--)
+    for (andar = 20; andar >= 1; andar--)
     {
-        printf("Andar%3d\t", i);
-        for(j = 1; j < 15; j++)
+        printf("Andar%3d\t", andar);
+        for(apt = 1; apt < 15; apt++)
         {
-            printf("%3c", hotel[i][j]);
+            printf("%3c", hotel[andar - 1][apt - 1]);
         }
         printf("\n");
     }
 }
 
-// Função para reservar quarto
 void fReserva() 
 {
     int andar, apartamento;
-    printf("\n--- CRIAR RESERVA ---\n");
+    printf("\nReserva: \n");
     printf("Escolha o andar (1-20) ou (0 para sair): ");
     scanf("%d" , &andar);
     
@@ -127,16 +120,16 @@ void fReserva()
 
     if (andar >= 1 && andar <= 20 && apartamento >= 1 && apartamento <= 14)
     {
-        if(hotel[andar][apartamento] == '.')
+        if(hotel[andar - 1][apartamento - 1] == '.')
         {
-            hotel[andar][apartamento] = 'R';
+            hotel[andar - 1][apartamento - 1] = 'R';
             printf("Reserva realizada com sucesso!\n");
         }
-        else if(hotel[andar][apartamento] == 'R')
+        else if(hotel[andar - 1][apartamento - 1] == 'R')
         {
             printf("Quarto ja esta reservado.\n");
         }
-        else if(hotel[andar][apartamento] == 'O')
+        else if(hotel[andar - 1][apartamento - 1] == 'O')
         {
             printf("Quarto ja esta ocupado.\n");
         }
@@ -148,146 +141,143 @@ void fReserva()
     system("pause");
 }
 
-// Check-in para quem já tem reserva ('R' -> 'O')
 void fComResCheckIn()
 {
-    int i, j;
-    printf("\n--- CHECK-IN COM RESERVA ---\n");
+    int andar, apt;
+    printf("\nCheck-In com reserva\n");
     printf("Escolha o andar (1-20) ou (0 para sair): ");
-    scanf("%d" , &i);
+    scanf("%d" , &andar);
     
-    if (i == 0) {
+    if (andar == 0) {
         printf("Operacao cancelada.\n");
         system("pause");
         return;
     }
 
     printf("Escolha o apartamento (1-14): ");
-    scanf("%d", &j);
+    scanf("%d", &apt);
 
-    if(i < 1 || i > 20 || j < 1 || j > 14)
+    if(andar < 1 || andar > 20 || apt < 1 || apt > 14)
     {
         printf("Apt. invalido\n");
         system("pause");
         return;
     }
     
-    if(hotel[i][j] != 'R')
+    if(hotel[andar - 1][apt - 1] != 'R')
     {
         printf("Este apartamento nao possui reserva ativa.\n");
         system("pause");
         return;
     }
     
-    hotel[i][j] = 'O';
+    hotel[andar - 1][apt - 1] = 'O';
     printf("Check-in realizado com sucesso! Quarto agora esta OCUPADO.\n");
     system("pause");
 }
 
-// Check-in sem reserva direta ('.' -> 'O')
 void fSemResCheckIn()
 {
-    int i, j;
-    printf("\n--- CHECK-IN SEM RESERVA ---\n");
+int andar, apt;
+    printf("\nCheck-In sem reserva\n");
     printf("Escolha o andar (1-20) ou (0 para sair): ");
-    scanf("%d" , &i);
+    scanf("%d" , &andar);
     
-    if (i == 0) {
+    if (andar == 0)
+    {
         printf("Operacao cancelada.\n");
         system("pause");
         return;
     }
 
     printf("Escolha o apartamento (1-14): ");
-    scanf("%d", &j);
+    scanf("%d", &apt);
 
-    if(i < 1 || i > 20 || j < 1 || j > 14)
+    if(andar < 1 || andar > 20 || apt < 1 || apt > 14)
     {
         printf("Apt. invalido\n");
         system("pause");
         return;
     }
     
-    if(hotel[i][j] != '.')
+    if(hotel[andar - 1][apt - 1] != '.')
     {
         printf("Este apartamento ja esta ocupado ou reservado.\n");
         system("pause");
         return;
     }
     
-    hotel[i][j] = 'O';
+    hotel[andar - 1][apt - 1] = 'O';
     printf("Check-in imediato realizado com sucesso!\n");
     system("pause");
 }
 
-// Cancelar uma reserva ativa ('R' -> '.')
 void fCancelarRes()
 {
-    int i, j;
-    printf("\n--- CANCELAR RESERVA ---\n");
+    int andar, apt;
+    printf("\nCancelar Reserva\n");
     printf("Escolha o andar (1-20) ou (0 para sair): ");
-    scanf("%d" , &i);
+    scanf("%d" , &andar);
     
-    if (i == 0) {
+    if (andar == 0) {
         printf("Operacao cancelada.\n");
         system("pause");
         return;
     }
 
     printf("Escolha o apartamento (1-14): ");
-    scanf("%d", &j);
+    scanf("%d", &apt);
 
-    if(i < 1 || i > 20 || j < 1 || j > 14)
+    if(andar < 1 || andar > 20 || apt < 1 || apt > 14)
     {
         printf("Apt. invalido\n");
         system("pause");
         return;
     }
 
-    if(hotel[i][j] != 'R')
+    if(hotel[andar - 1][apt - 1] != 'R')
     {
         printf("Este apartamento nao possui uma reserva para ser cancelada.\n");
         system("pause");
         return;
     }
-    
-    hotel[i][j] = '.';
+
+    hotel[andar - 1][apt - 1] = '.';
     printf("Reserva cancelada com sucesso.\n");
     system("pause");
 }
 
-// Fazer Check-out ('O' -> '.')
 void fCheckOut()
 {
-    int i, j;
-    printf("\n--- CHECK-OUT ---\n");
+    int andar, apt;
+    printf("\nCheck-Out\n");
     printf("Escolha o andar (1-20) ou (0 para sair): ");
-    scanf("%d" , &i);
+    scanf("%d" , &andar);
     
-    if (i == 0) {
+    if (andar == 0) {
         printf("Operacao cancelada.\n");
         system("pause");
         return;
     }
 
     printf("Escolha o apartamento (1-14): ");
-    scanf("%d", &j);
+    scanf("%d", &apt);
 
-    if(i < 1 || i > 20 || j < 1 || j > 14)
+    if(andar < 1 || andar > 20 || apt < 1 || apt > 14)
     {
         printf("Apt. invalido\n");
         system("pause");
         return;
     }
     
-    if(hotel[i][j] != 'O')
+    if(hotel[andar - 1][apt - 1] != 'O')
     {
         printf("Apt. nao ocupado, impossivel realizar o checkout.\n");
         system("pause");
         return;
     }
     
-    hotel[i][j] = '.';
+    hotel[andar - 1][apt - 1] = '.';
     printf("Checkout realizado com sucesso! Quarto liberado.\n");
     system("pause");
 }
