@@ -5,6 +5,7 @@ char hotel[20][14];
 
 void fTaxaOcupacao();
 void fTaxaReserva();
+void fTaxaLivre();
 void fInicializarHotel();
 void fMapa();
 void fReserva();
@@ -23,6 +24,7 @@ int main()
     {
         system("cls");
         printf("Mapa dos quartos\n");
+        fTaxaLivre();
         fTaxaOcupacao();
         fTaxaReserva();
         fMapa();
@@ -320,4 +322,22 @@ void fTaxaReserva()
 	}
 	taxaR = (reservados / total) * 100;
 	printf("Taxa de Reservas dos apartamentos: %.2f\n", taxaR);
+}
+
+void fTaxaLivre()
+{
+	float livres = 280, total = 280;
+	float taxaL;
+	for(int i = 0; i < 20; i++)
+	{
+		for(int j = 0; j < 14; j++)
+		{
+			if(hotel[i][j] == 'R' || hotel[i][j] == 'O')
+			{
+				livres--;
+			}
+		}
+	}
+	taxaL = (livres / total) * 100;
+	printf("Taxa de quartos livres: %.2f\n", taxaL);
 }
