@@ -1,21 +1,19 @@
-// JLLR-Hotel-Ativ04.cpp
-// JOAO VITOR CARVALHO MAGALHAES QUINTELLA
-// LEOPOLDO ORTUZAL ZUCHIERI
-// LUIS FELIPE FARINHA MARCHI
-// RODRIGO CORRIO FERRER DOS SANTOS
+// JLLR-Hotel-Ativ04 - Projeto Hotel LIC2026
+// JOAO VITOR CARVALHO MAGALHAES QUINTELLA - 01/06/2026
+// LEOPOLDO ORTUZAL ZUCHIERI - 01/06/2026
+// LUIS FELIPE FARINHA MARCHI - 01/06/2026
+// RODRIGO CORRIO FERRER DOS SANTOS - 01/06/2026
 /* Um hotel possui 20 andares com 14 apartamentos por andar. 
-Conforme os hospedes vão chegando, eles escolhem o apartamento desejado. 
-Se estiver livre, o apartamento é alocado e o hospede faz o registro. 
+Conforme os hospedes vao chegando, eles escolhem o apartamento desejado. 
+Se estiver livre, o apartamento e' alocado e o hospede faz o registro. 
 Ao deixar o hotel, o hospede faz o check-out e libera o apartamento. 
-O gerente também precisa saber quais apartamentos estão livres e a taxa de 
-ocupação do hotel.
+O gerente tambem precisa saber quais apartamentos estao livres e a taxa de 
+ocupacao do hotel.
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-// Matriz global representando o hotel. 
-// Estados possiveis: '.' (Livre), 'R' (Reservado), 'O' (Ocupado)
 char hotel[20][14];
 
 // Prototipacao das funcoes
@@ -31,13 +29,13 @@ int main()
 {
     int op, op2;
     
-    // Prepara a matriz com todos os quartos livres antes de iniciar o sistema
     fInicializarHotel();
 
     do
     {
         system("cls");
         printf("Ocupacao dos apartamentos: \n");
+        printf("'.' (Livre), 'R' (Reservado), 'O' (Ocupado)\n");
         fMapa();
 
         printf("\nSelecione uma das opcoes:\n");
@@ -100,7 +98,7 @@ void fInicializarHotel()
     }
 }
 
-// Imprime a matriz do hotel em formato de grade, com os andares em ordem decrescente (do 20o ao 1o)
+// Imprime a matriz do hotel em formato de grade, com os andares em ordem decrescente (do vigesimo ao primeiro)
 void fMapa()
 {
     int andar, apto;
@@ -316,3 +314,4 @@ void fCheckOut()
     printf("Checkout realizado com sucesso! Quarto liberado.\n");
     system("pause");
 }
+
