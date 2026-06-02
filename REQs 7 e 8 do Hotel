@@ -21,18 +21,32 @@ int main()
     
     fInicializarHotel();
 
-	struct sthospedes
+	struct stender
 	{
-		char nome[40];
-		long long int CPF;
 		char ender[40];
 		char munic[20];
 		char cep[9];
-		long long int cll;
+	};
+
+	struct stender endereco;
+	
+	struct sthospedes
+	{
+		char nome[40];
+		char CPF[20];
+		char cll[20];
 		char email[40];
 	};
 	
+	
 	struct sthospedes hospedes;
+	
+	struct ststatus
+	{
+		char status[1];
+	};
+	
+	struct ststatus status;
 	
     do
     {
@@ -68,10 +82,10 @@ int main()
 				scanf("%s", &hospedes.email);
 				fclear();
 				printf("CPF: ");
-				scanf("%lld", &hospedes.CPF);
+				scanf("%s", &hospedes.CPF);
 				fclear();
 				printf("celular: ");
-				scanf("%lld", &hospedes.cll);
+				scanf("%s", &hospedes.cll);
 				fclear();
 				printf("endereco: ");
 				scanf("%s", &hospedes.ender);
@@ -100,10 +114,10 @@ int main()
 					scanf("%s", &hospedes.email);
 					fclear();
 					printf("CPF: ");
-					scanf("%d", &hospedes.CPF);
+					scanf("%s", &hospedes.CPF);
 					fclear();
 					printf("celular: ");
-					scanf("%d", &hospedes.cll);
+					scanf("%s", &hospedes.cll);
 					fclear();
 					printf("endereco: ");
 					scanf("%s", &hospedes.ender);
@@ -126,10 +140,10 @@ int main()
 					scanf("%s", &hospedes.email);
 					fclear();
 					printf("CPF: ");
-					scanf("%d", &hospedes.CPF);
+					scanf("%s", &hospedes.CPF);
 					fclear();
 					printf("celular: ");
-					scanf("%d", &hospedes.cll);
+					scanf("%s", &hospedes.cll);
 					fclear();
 					printf("endereco: ");
 					scanf("%s", &hospedes.ender);
