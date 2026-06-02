@@ -28,22 +28,22 @@ int main()
 		char cep[9];
 	};
 
-	struct stender endereco;
-	
 	struct sthospedes
 	{
 		char nome[40];
 		char CPF[20];
+		struct stender endereco;
 		char cll[20];
 		char email[40];
 	};
 	
 	
-	struct sthospedes hospedes;
+	
 	
 	struct ststatus
 	{
 		char status[1];
+		struct sthospedes hospedes;
 	};
 	
 	struct ststatus status;
@@ -88,13 +88,13 @@ int main()
 				scanf("%s", &hospedes.cll);
 				fclear();
 				printf("endereco: ");
-				scanf("%s", &hospedes.ender);
+				scanf("%s", &endereco.ender);
 				fclear();
 				printf("municipio: ");
-				scanf("%s", &hospedes.munic);
+				scanf("%s", &endereco.munic);
 				fclear();
 				printf("cep: ");
-				scanf("%s", &hospedes.cep);
+				scanf("%s", &endereco.cep);
                 fclear();
 				fReserva();
                 break;
@@ -120,13 +120,13 @@ int main()
 					scanf("%s", &hospedes.cll);
 					fclear();
 					printf("endereco: ");
-					scanf("%s", &hospedes.ender);
+					scanf("%s", &endereco.ender);
 					fclear();
 					printf("municipio: ");
-					scanf("%s", &hospedes.munic);
+					scanf("%s", &endereco.munic);
 					fclear();
 					printf("cep: ");
-					scanf("%s", &hospedes.cep);
+					scanf("%s", &endereco.cep);
                     fclear();
 					fComResCheckIn();
                 } 
@@ -146,13 +146,13 @@ int main()
 					scanf("%s", &hospedes.cll);
 					fclear();
 					printf("endereco: ");
-					scanf("%s", &hospedes.ender);
+					scanf("%s", &endereco.ender);
 					fclear();
 					printf("municipio: ");
-					scanf("%s", &hospedes.munic);
+					scanf("%s", &endereco.munic);
 					fclear();
 					printf("cep: ");
-					scanf("%s", &hospedes.cep);
+					scanf("%s", &endereco.cep);
                     fclear();
 					fSemResCheckIn();
                 }
